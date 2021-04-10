@@ -6,6 +6,8 @@ Tailwindcss plugin to customize browser scrollbar.
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@gradin/tailwindcss-scrollbar)
 ![npm](https://img.shields.io/npm/dw/@gradin/tailwindcss-scrollbar)
 
+[Live Demo](https://play.tailwindcss.com/SeDSnfsxrR)
+
 ## Installation
 
 ```sh
@@ -25,14 +27,13 @@ module.exports = {
   },
   plugins: [
     require('@gradin/tailwindcss-scrollbar')({
-      size: '5px',
+      size: '5px', // width or height, default '5px'
       colors: {
         track: 'lightgray', // default '#f1f1f1'
         thumb: 'gray', // default '#c1c1c1'
         thumbHover: 'darkgray', // default '#a8a8a8'
       }
     }),
-    // ...
   ],
 }
 ```
