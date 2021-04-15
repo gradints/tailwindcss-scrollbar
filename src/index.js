@@ -1,12 +1,16 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin.withOptions(function (options) {
-  return function ({ addBase }) {
-    // const size = options?.size ?? '5px'
-    // const { track, thumb, thumbHover } = options?.colors ?? {}
+  return function ({ addBase, theme }) {
+    const size = options && options.size ? options.size : theme('scrollbar.DEFAULT.size', '5px')
 
-    const size = options && options.size ? options.size : '5px'
-    const { track, thumb, thumbHover } = options && options.colors ? options.colors : {}
+    const optionColors = options && options.colors ? options.colors : {}
+    const defaultColors = theme('scrollbar.DEFAULT.colors', {
+      track: '#f1f1f1',
+      thumb: '#c1c1c1',
+      hover: '#a8a8a8',
+    })
+    const { track, thumb, thumbHover } = { ...defaultColors, ...optionColors }
 
     addBase([
       {
@@ -15,13 +19,13 @@ module.exports = plugin.withOptions(function (options) {
           height: size,
         },
         '::-webkit-scrollbar-track': {
-          background: track ? track : '#f1f1f1',
+          background: track,
         },
         '::-webkit-scrollbar-thumb': {
-          background: thumb ? thumb : '#c1c1c1',
+          background: thumb,
         },
         '::-webkit-scrollbar-thumb:hover': {
-          background: thumbHover ? thumbHover : '#a8a8a8',
+          background: thumbHover,
         },
       },
     ])
