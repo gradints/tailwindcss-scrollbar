@@ -1,6 +1,6 @@
 {
   "name": "@gradin/tailwindcss-scrollbar",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Tailwindcss plugin to customize scrollbar.",
   "main": "src/index.js",
   "scripts": {},
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/gradints/tailwindcss-scrollbar#readme",
   "devDependencies": {
-    "eslint": "^7.24.0",
-    "tailwindcss": "^2.1.1"
+    "eslint": "^7.25.0",
+    "tailwindcss": "^2.1.2"
   }
 }
