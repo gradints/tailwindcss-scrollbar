@@ -7,37 +7,37 @@ const getSize = (options, theme) => {
   return theme('scrollbar.DEFAULT.size', '5px') // with config
 }
 const getStyleTrack = (options, theme) => {
-  const background = '#f1f1f1'
-  const fromConfig = { // with config
-    background,
-    darkBackground: background,
-    ...theme('scrollbar.DEFAULT.track', {}),
+  const defaultBackground = '#f1f1f1'
+  const defaultConfig = {
+    background: defaultBackground,
+    darkBackground: defaultBackground,
   }
-  const fromOptions = options && options.track ? options.track : {} // with plugin options
+  const fromConfig = theme('scrollbar.DEFAULT.track', {}) // with tailwind.config.js
+  const fromOptions = (options && options.track) ? options.track : {} // with plugin options
 
-  return { ...fromConfig, ...fromOptions }
+  return { ...defaultConfig, ...fromConfig, ...fromOptions }
 }
 const getStyleThumb = (options, theme) => {
-  const background = '#c1c1c1'
-  const fromConfig = { // with config
-    background,
-    darkBackground: background,
-    ...theme('scrollbar.DEFAULT.thumb', {}),
+  const defaultBackground = '#c1c1c1'
+  const defaultConfig = {
+    background: defaultBackground,
+    darkBackground: defaultBackground,
   }
-  const fromOptions = options && options.thumb ? options.thumb : {} // with plugin options
+  const fromConfig = theme('scrollbar.DEFAULT.thumb', {}) // with tailwind.config.js
+  const fromOptions = (options && options.thumb) ? options.thumb : {} // with plugin options
 
-  return { ...fromConfig, ...fromOptions }
+  return { ...defaultConfig, ...fromConfig, ...fromOptions }
 }
 const getStyleThumbHover = (options, theme) => {
-  const background = '#a8a8a8'
-  const fromConfig = { // with config
-    background,
-    darkBackground: background,
-    ...theme('scrollbar.DEFAULT.hover', {}),
+  const defaultBackground = '#a8a8a8'
+  const defaultConfig = {
+    background: defaultBackground,
+    darkBackground: defaultBackground,
   }
-  const fromOptions = options && options.hover ? options.hover : {} // with plugin options
+  const fromConfig = theme('scrollbar.DEFAULT.hover', {}) // with tailwind.config.js
+  const fromOptions = (options && options.hover) ? options.hover : {} // with plugin options
 
-  return { ...fromConfig, ...fromOptions }
+  return { ...defaultConfig, ...fromConfig, ...fromOptions }
 }
 
 module.exports = plugin.withOptions(function (options) {
