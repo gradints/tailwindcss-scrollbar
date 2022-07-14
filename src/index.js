@@ -4,40 +4,46 @@ const getSize = (options, theme) => {
   if (options && options.size) { // with plugin options
     return options.size
   }
-  return theme('scrollbar.DEFAULT.size', '5px') // with config
+  return theme('scrollbar.DEFAULT.size', '5px') // with tailwind.config.js
 }
 const getStyleTrack = (options, theme) => {
-  const defaultBackground = '#f1f1f1'
-  const defaultConfig = {
-    background: defaultBackground,
-    darkBackground: defaultBackground,
-  }
+  const background = '#f1f1f1' // default
   const fromConfig = theme('scrollbar.DEFAULT.track', {}) // with tailwind.config.js
   const fromOptions = (options && options.track) ? options.track : {} // with plugin options
 
-  return { ...defaultConfig, ...fromConfig, ...fromOptions }
+  const finalConfig = { background, ...fromConfig, ...fromOptions }
+
+  if (! finalConfig.darkBackground) {
+    finalConfig.darkBackground = finalConfig.background
+  }
+
+  return finalConfig
 }
 const getStyleThumb = (options, theme) => {
-  const defaultBackground = '#c1c1c1'
-  const defaultConfig = {
-    background: defaultBackground,
-    darkBackground: defaultBackground,
-  }
+  const background = '#c1c1c1'
   const fromConfig = theme('scrollbar.DEFAULT.thumb', {}) // with tailwind.config.js
   const fromOptions = (options && options.thumb) ? options.thumb : {} // with plugin options
 
-  return { ...defaultConfig, ...fromConfig, ...fromOptions }
+  const finalConfig = { background, ...fromConfig, ...fromOptions }
+
+  if (! finalConfig.darkBackground) {
+    finalConfig.darkBackground = finalConfig.background
+  }
+
+  return finalConfig
 }
 const getStyleThumbHover = (options, theme) => {
-  const defaultBackground = '#a8a8a8'
-  const defaultConfig = {
-    background: defaultBackground,
-    darkBackground: defaultBackground,
-  }
+  const background = '#a8a8a8'
   const fromConfig = theme('scrollbar.DEFAULT.hover', {}) // with tailwind.config.js
   const fromOptions = (options && options.hover) ? options.hover : {} // with plugin options
 
-  return { ...defaultConfig, ...fromConfig, ...fromOptions }
+  const finalConfig = { background, ...fromConfig, ...fromOptions }
+
+  if (! finalConfig.darkBackground) {
+    finalConfig.darkBackground = finalConfig.background
+  }
+
+  return finalConfig
 }
 
 module.exports = plugin.withOptions(function (options) {
