@@ -46,6 +46,22 @@ const getStyleThumbHover = (options, theme) => {
   return finalConfig
 }
 
+const getStyleScrollbarNone = () => {
+  return [
+    {
+      '.scrollbar-none': {
+        '-ms-overflow-style': none, /* IE and Edge */
+        'scrollbar-width': none, /* Firefox */
+      },
+    },
+    {
+      '.scrollbar-none::-webkit-scrollbar': {
+        'display': 'none', /* Chrome, Safari, Opera */
+      },
+    },
+  ]
+}
+
 module.exports = plugin.withOptions(function (options) {
   return function ({ addBase, theme, config, prefix }) {
     const size = getSize(options, theme)
@@ -96,5 +112,7 @@ module.exports = plugin.withOptions(function (options) {
     } else {
       addBase([{ [prefix('.dark')]: dark }])
     }
+
+    addBase(getStyleScrollbarNone())
   }
 })

@@ -113,6 +113,31 @@ hover: {
 },
 ```
 
+## Hides scrollbar.
+
+To hide the scrollbar but still make it scrollable, use `scrollbar-none` class
+on the element with `overflow: auto | scroll`.
+
+```html
+<div class="overflow-auto scrollbar-none">
+  <!-- Very long content here -->
+</div>
+```
+
+This is done by using `scrollbar-width` on Firefox and `::-webkit-scrollbar display:none` on Chrome.
+
+```css
+.scrollbar-none {
+  -ms-overflow-style: none !important;  /* IE */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;  /* Chrome, Edge, Safari, Opera */
+}
+```
+
+
 ## Browser Support
 
 This plugin uses `::-webkit-scrollbar` to modify scrollbar style.
@@ -120,3 +145,5 @@ This plugin uses `::-webkit-scrollbar` to modify scrollbar style.
 Not supported in all versions of Firefox and Edge prior version <79.
 
 [See Browser Compatibility](https://caniuse.com/?search=%3A%3A-webkit-scrollbar)
+
+`.scrollbar-none` is supported on [Firefox version 64 or newer](https://caniuse.com/?search=scrollbar-width).
