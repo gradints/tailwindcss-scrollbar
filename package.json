@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -fr dist",
     "build": "npm run clean && tsc",
-    "release": "np --tag=next --branch=next",
+    "release": "np --tag=next --branch=next --releaseDraft=false",
     "release:latest": "np"
   },
   "repository": {
@@ -40,6 +40,9 @@
   "dependencies": {
     "lodash-es": "^4.17.21"
   },
+  "files": [
+    "dist/*"
+  ],
   "np": {
     "yarn": false,
     "branch": "main",
