@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -fr dist",
-    "build": "npm run clean && tsc"
+    "build": "npm run clean && tsc",
+    "release": "np --tag=next --branch=next",
+    "release:latest": "np"
   },
   "repository": {
     "type": "git",
@@ -37,5 +39,11 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.21"
+  },
+  "np": {
+    "yarn": false,
+    "branch": "main",
+    "contents": "dist",
+    "tests": false
   }
 }
