@@ -201,9 +201,12 @@ const getCustomStyles = (pluginAPI: CustomPluginApi) => {
       '@media (prefers-color-scheme: light)': light,
     } as unknown as CSSRuleObject)
   } else {
-    styles.push({
-      [prefix(`.${darkClass}`)]: dark,
-    } as unknown as CSSRuleObject)
+    const darkClasses = Object.entries(dark).map(([key, val]) => {
+      return {
+        [prefix(`.${darkClass}`) + ' ' + key]: val,
+      } as CSSRuleObject
+    })
+    styles.push(...darkClasses)
   }
 
   return styles
