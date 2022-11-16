@@ -6,7 +6,7 @@ Tailwindcss plugin to customize browser scrollbar.
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@gradin/tailwindcss-scrollbar)
 ![npm](https://img.shields.io/npm/dt/@gradin/tailwindcss-scrollbar)
 
-[Live Demo](https://play.tailwindcss.com/1ClVbqktWz?file=config)
+[Live Demo](https://play.tailwindcss.com/ohaIXRd9No)
 
 ## Installation
 
@@ -94,6 +94,37 @@ module.exports = {
 }
 ```
 
+## Multiple scrollbar styles
+
+You can add more scrollbar styles using `theme.scrollbar.STYLE_NAME`
+
+They need to have `size`, `track`, `thumb`, `hover` property specified, as they don't have default value.
+
+```js
+module.exports = {
+  theme: {
+    // ...
+    scrollbar: {
+      thin: {
+        size: '2px',
+        track: { background: 'lightgray' },
+        thumb: { background: 'gray' },
+        hover: { background: 'darkgray' },
+      },
+      blue: {
+        size: '8px',
+        track: { background: 'lightblue' },
+        thumb: { background: 'blue' },
+        hover: { background: 'darkblue' },
+      },
+    },
+  },
+}
+```
+```html
+<div class="overflow-auto scrollbar-thin"></div>
+<div class="overflow-auto scrollbar-blue"></div>
+```
 ## Dark Mode
 
 To set different background color on dark mode, you can use `darkBackground` attribute. If unset, they will have the same color as the `background`.
