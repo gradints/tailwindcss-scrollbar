@@ -155,7 +155,7 @@ const getCustomStyles = (pluginAPI: CustomPluginApi) => {
   const dark = Object.entries(theme(themeKey, {}))
     .filter(([key]) => key !== 'DEFAULT')
     .map(([key, val]) => {
-      const className = `.${themeKey}-${key}`
+      const className = prefix(`.${themeKey}-${key}`)
       const value = val as PluginOptions
       const track = value.track ?? {}
       const thumb = value.thumb ?? {}
@@ -171,7 +171,7 @@ const getCustomStyles = (pluginAPI: CustomPluginApi) => {
         [`${className}::-webkit-scrollbar-thumb:hover`]: {
           background: hover.darkBackground ?? hover.background,
         },
-      } as CSSRuleObject
+      }
     })
   const light = Object.entries(theme(themeKey, {}))
     .filter(([key]) => key !== 'DEFAULT')
@@ -192,7 +192,7 @@ const getCustomStyles = (pluginAPI: CustomPluginApi) => {
         [`${className}::-webkit-scrollbar-thumb:hover`]: {
           background: hover.background,
         },
-      } as CSSRuleObject
+      }
     })
 
   if (config('darkMode') as Partial<DarkModeConfig> === 'media') {
@@ -201,12 +201,11 @@ const getCustomStyles = (pluginAPI: CustomPluginApi) => {
       '@media (prefers-color-scheme: light)': light,
     } as unknown as CSSRuleObject)
   } else {
-    const darkClasses = Object.entries(dark).map(([key, val]) => {
-      return {
+    Object.entries(dark).forEach(([key, val]) => {
+      styles.push({
         [prefix(`.${darkClass}`) + ' ' + key]: val,
-      } as CSSRuleObject
+      } as CSSRuleObject)
     })
-    styles.push(...darkClasses)
   }
 
   return styles
