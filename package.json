@@ -1,6 +1,6 @@
 {
   "name": "@gradin/tailwindcss-scrollbar",
-  "version": "2.1.1-beta.1",
+  "version": "2.1.1-beta.2",
   "description": "Tailwindcss plugin to customize scrollbar.",
   "main": "dist/index.js",
   "scripts": {
