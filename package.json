@@ -7,7 +7,7 @@
     "clean": "rm -fr dist",
     "build": "npm run clean && tsc",
     "release": "npm run build && np --tag=next --branch=next --no-tests --no-release-draft",
-    "release:latest": "npm run build && np"
+    "release:latest": "npm run build && np --no-tests"
   },
   "repository": {
     "type": "git",
