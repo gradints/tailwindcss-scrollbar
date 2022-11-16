@@ -124,14 +124,14 @@ on the element with `overflow: auto | scroll`.
 </div>
 ```
 
-This is done by using `scrollbar-width` on Firefox and `::-webkit-scrollbar{display:none}` on Chrome.
+This is done by using `scrollbar-width: none` on Firefox and `::-webkit-scrollbar{display:none}` on Chrome.
 
 
 ## Browser Support
 
 This plugin uses `::-webkit-scrollbar` to modify scrollbar style.
 
-Not supported in all versions of Firefox and Edge prior version <79.
+Not supported in **all versions of Firefox** and **Edge version 78 or older**.
 
 [See Browser Compatibility](https://caniuse.com/?search=%3A%3A-webkit-scrollbar)
 

@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -fr dist",
     "build": "npm run clean && tsc",
-    "release": "np --tag=next --branch=next --releaseDraft=false",
+    "release": "np --tag=next --branch=next --no-tests --no-release-draft",
     "release:latest": "np"
   },
   "repository": {
@@ -31,14 +31,10 @@
     "tailwindcss": ">=2.0.0"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.6",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
     "eslint": "^8.27.0",
-    "typescript": "^4.8.4"
-  },
-  "dependencies": {
-    "lodash-es": "^4.17.21"
+    "typescript": "^4.9.3"
   },
   "files": [
     "dist/*"
