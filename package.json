@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -fr dist",
-    "build": "tsc",
-    "release": "npm run clean && npm run build && np --tag=next --branch=next --no-tests --no-release-draft",
-    "release:latest": "npm run clean && npm run build && np"
+    "build": "npm run clean && tsc",
+    "release": "npm run build && np --tag=next --branch=next --no-tests --no-release-draft",
+    "release:latest": "npm run build && np"
   },
   "repository": {
     "type": "git",
