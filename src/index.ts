@@ -12,11 +12,6 @@ interface PluginOptions {
   hover?: StyleOptions,
 }
 
-// Temporary workaround until PluginAPI type also contains type for function prefix
-interface CustomPluginApi extends PluginAPI {
-  prefix: (selector: string) => string,
-}
-
 const themeKey = 'scrollbar' // theme.scrollbar
 const darkClass = 'dark'
 
@@ -26,8 +21,8 @@ const omit = (key: string, { [key]: _, ...obj }) => obj
 /**
  * Handle plugin.withOptions and theme.scrollbar.DEFAULT
  */
-const getDefaultStyle = (options: PluginOptions, pluginAPI: CustomPluginApi) => {
-  const { theme, config, prefix } = pluginAPI
+const getDefaultStyle = (options: PluginOptions, pluginAPI: PluginAPI) => {
+  const { theme, config } = pluginAPI
 
   const getSize = () => {
     return options?.size ?? theme(`${themeKey}.DEFAULT.size`, '5px')
@@ -111,15 +106,18 @@ const getDefaultStyle = (options: PluginOptions, pluginAPI: CustomPluginApi) => 
     })
   } else {
     styles.push({
-      [prefix(`.${darkClass}`)]: dark,
+      [`.${darkClass}`]: dark,
     })
   }
 
   return styles
 }
 
-const getCustomStyles = (pluginAPI: CustomPluginApi) => {
-  const { theme, config, prefix } = pluginAPI
+/**
+ * Handle theme.scrollbar.<any key>
+ */
+const getCustomStyles = (pluginAPI: PluginAPI) => {
+  const { theme, config } = pluginAPI
 
   const styles = Object.entries(theme(themeKey, {}))
     .filter(([key]) => key !== 'DEFAULT')
@@ -155,7 +153,7 @@ const getCustomStyles = (pluginAPI: CustomPluginApi) => {
   const dark = Object.entries(theme(themeKey, {}))
     .filter(([key]) => key !== 'DEFAULT')
     .map(([key, val]) => {
-      const className = prefix(`.${themeKey}-${key}`)
+      const className = `.${themeKey}-${key}`
       const value = val as PluginOptions
       const track = value.track ?? {}
       const thumb = value.thumb ?? {}
@@ -203,7 +201,7 @@ const getCustomStyles = (pluginAPI: CustomPluginApi) => {
   } else {
     dark.forEach(s => {
       styles.push({
-        [prefix(`.${darkClass}`)]: s,
+        [`.${darkClass}`]: s,
       } as unknown as CSSRuleObject)
     })
   }
@@ -229,9 +227,9 @@ export default withOptions<PluginOptions>(function (options) {
   return function (pluginAPI) {
     const { addBase, addUtilities } = pluginAPI
 
-    addBase(getDefaultStyle(options, pluginAPI as CustomPluginApi))
+    addBase(getDefaultStyle(options, pluginAPI))
 
-    addUtilities(getCustomStyles(pluginAPI as CustomPluginApi))
+    addUtilities(getCustomStyles(pluginAPI))
 
     addUtilities(scrollbarNoneStyle)
   }
