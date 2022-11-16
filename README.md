@@ -6,7 +6,7 @@ Tailwindcss plugin to customize browser scrollbar.
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@gradin/tailwindcss-scrollbar)
 ![npm](https://img.shields.io/npm/dt/@gradin/tailwindcss-scrollbar)
 
-[Live Demo](https://play.tailwindcss.com/1ClVbqktWz?file=config)
+[Live Demo](https://play.tailwindcss.com/ohaIXRd9No)
 
 ## Installation
 
@@ -56,7 +56,7 @@ module.exports = {
         // add other css attributes here,
         // will be merged to ::-webkit-scrollbar-thumb
       },
-      thumbHover: {
+      hover: {
         background: 'darkgray', // default '#a8a8a8'
         borderRadius: '40px',
         // add other css attributes here,
@@ -82,7 +82,7 @@ module.exports = {
         thumb: {
           background: theme('colors.gray.400'),
         },
-        thumbHover: {
+        hover: {
           background: theme('colors.gray.500'),
         },
       },
@@ -94,6 +94,37 @@ module.exports = {
 }
 ```
 
+## Multiple scrollbar styles
+
+You can add more scrollbar styles using `theme.scrollbar.STYLE_NAME`
+
+They need to have `size`, `track`, `thumb`, `hover` property specified, as they don't have default value.
+
+```js
+module.exports = {
+  theme: {
+    // ...
+    scrollbar: {
+      thin: {
+        size: '2px',
+        track: { background: 'lightgray' },
+        thumb: { background: 'gray' },
+        hover: { background: 'darkgray' },
+      },
+      blue: {
+        size: '8px',
+        track: { background: 'lightblue' },
+        thumb: { background: 'blue' },
+        hover: { background: 'darkblue' },
+      },
+    },
+  },
+}
+```
+```html
+<div class="overflow-auto scrollbar-thin"></div>
+<div class="overflow-auto scrollbar-blue"></div>
+```
 ## Dark Mode
 
 To set different background color on dark mode, you can use `darkBackground` attribute. If unset, they will have the same color as the `background`.
@@ -124,25 +155,14 @@ on the element with `overflow: auto | scroll`.
 </div>
 ```
 
-This is done by using `scrollbar-width` on Firefox and `::-webkit-scrollbar display:none` on Chrome.
-
-```css
-.scrollbar-none {
-  -ms-overflow-style: none !important;  /* IE */
-  scrollbar-width: none !important;  /* Firefox */
-}
-
-.scrollbar-none::-webkit-scrollbar {
-  display: none !important;  /* Chrome, Edge, Safari, Opera */
-}
-```
+This is done by using `scrollbar-width: none` on Firefox and `::-webkit-scrollbar{display:none}` on Chrome.
 
 
 ## Browser Support
 
 This plugin uses `::-webkit-scrollbar` to modify scrollbar style.
 
-Not supported in all versions of Firefox and Edge prior version <79.
+Not supported in **all versions of Firefox** and **Edge version 78 or older**.
 
 [See Browser Compatibility](https://caniuse.com/?search=%3A%3A-webkit-scrollbar)
 
