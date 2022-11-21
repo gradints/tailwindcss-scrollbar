@@ -47,20 +47,17 @@ module.exports = {
       size: '5px', // width or height, default '5px'
       track: {
         background: 'lightgray', // default '#f1f1f1'
-        // add other css attributes here,
-        // will be merged to ::-webkit-scrollbar-track
+        // add any css attributes here, will be merged to ::-webkit-scrollbar-track
       },
       thumb: {
         background: 'gray', // default '#c1c1c1'
         borderRadius: '40px',
-        // add other css attributes here,
-        // will be merged to ::-webkit-scrollbar-thumb
+        // add any css attributes here, will be merged to ::-webkit-scrollbar-thumb
       },
       hover: {
         background: 'darkgray', // default '#a8a8a8'
         borderRadius: '40px',
-        // add other css attributes here,
-        // will be merged to ::-webkit-scrollbar-thumb:hover
+        // add any css attributes here, will be merged to ::-webkit-scrollbar-thumb:hover
       },
     }),
   ],
@@ -144,7 +141,7 @@ hover: {
 },
 ```
 
-## Hides scrollbar.
+## Hides scrollbar
 
 To hide the scrollbar but still make it scrollable, use `scrollbar-none` class
 on the element with `overflow: auto | scroll`.
@@ -162,7 +159,7 @@ This is done by using `scrollbar-width: none` on Firefox and `::-webkit-scrollba
 
 This plugin uses `::-webkit-scrollbar` to modify scrollbar style.
 
-Not supported in **all versions of Firefox** and **Edge version 78 or older**.
+Not supported on **all versions of Firefox** and **Edge version 78 or older**.
 
 [See Browser Compatibility](https://caniuse.com/?search=%3A%3A-webkit-scrollbar)
 
