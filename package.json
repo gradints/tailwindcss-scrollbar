@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -fr dist",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc --declaration",
     "release": "npm run build && np --tag=next --branch=next --no-tests --no-release-draft",
     "release:latest": "npm run build && np --no-tests"
   },
